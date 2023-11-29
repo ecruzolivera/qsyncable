@@ -36,12 +36,12 @@ include(cmake/ClangTidyConfig.cmake)
 
 find_package(
   QT NAMES Qt6 Qt5
-  COMPONENTS Core Qml
+  COMPONENTS Core Qml Core5Compat
   REQUIRED)
 
 find_package(
   Qt${QT_VERSION_MAJOR}
-  COMPONENTS Core Qml
+  COMPONENTS Core Qml Core5Compat
   REQUIRED)
 
 set(SRC_FILES
@@ -87,7 +87,8 @@ target_include_directories(
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${project_options_and_warnings})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core
-                                             Qt${QT_VERSION_MAJOR}::Qml)
+                                             Qt${QT_VERSION_MAJOR}::Qml
+                                             Qt${QT_VERSION_MAJOR}::Core5Compat)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX d)
 

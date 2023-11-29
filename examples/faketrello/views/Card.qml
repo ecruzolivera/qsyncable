@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick
 import "../components"
 
 Item {
@@ -20,19 +20,16 @@ Item {
     DropArea {
         id: dropArea
         anchors.fill: parent
-        onEntered: {
+        onEntered: function (drag) {
             if (card.listUuid !== drag.source.listUuid) {
-                return;
+                return
             }
 
             if (card.cardUuid === drag.source.cardUuid) {
-                return;
+                return
             }
 
-            App.moveCard(listUuid,
-                         drag.source.cardUuid,
-                         card.cardUuid);
-
+            App.moveCard(listUuid, drag.source.cardUuid, card.cardUuid)
         }
     }
 
@@ -78,41 +75,35 @@ Item {
             }
 
             onClicked: {
-                App.removeCard(listUuid, cardUuid);
+                App.removeCard(listUuid, cardUuid)
             }
 
             Behavior on opacity {
                 NumberAnimation {
-                    property: "opacity";
+                    property: "opacity"
                     duration: 200
-                    easing.type: Easing.OutQuad;
+                    easing.type: Easing.OutQuad
                 }
             }
-
         }
 
         states: State {
             when: mouseArea.drag.active
             ParentChange {
-                target: container;
+                target: container
                 parent: window.contentItem
             }
 
             PropertyChanges {
                 target: container
-                z: 10000;
+                z: 10000
             }
 
             AnchorChanges {
-                target: container;
-                anchors.verticalCenter: undefined;
-                anchors.horizontalCenter: undefined;
+                target: container
+                anchors.verticalCenter: undefined
+                anchors.horizontalCenter: undefined
             }
         }
-
     }
-
-
-
 }
-

@@ -17,7 +17,7 @@ int AppDelegate::run()
             QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/" //"/storage/emulated/0/"
              + "faketrello.example.qtproject.org";
 #else
-            QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+            QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 #endif /* Q_OS_ANDROID */
 
     // NPM: Create application-specific directory for persistent storage if it doesn't exist
