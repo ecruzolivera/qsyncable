@@ -1,7 +1,7 @@
-import QtQuick 2.3
-import QtQuick.Window 2.2
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.1
+import QtQuick
+import QtQuick.Window
+import QtQuick.Layouts
+import QtQuick.Controls
 import "./views"
 
 ApplicationWindow {
@@ -21,7 +21,6 @@ ApplicationWindow {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
-
     }
 
     // NPM: Persist the model to file on application close.
@@ -30,10 +29,10 @@ ApplicationWindow {
     // (via swipe or close window button) doesn't call this -- you just get
     // '"org.qtproject.example.faketrello" died.' message before anything can be done.
     // However,  closing android app with back button works and persists the board.
-    onClosing: {
+    onClosing: function (close) {
         //console.log("Model=" + App.stringifyModel());
-        console.log("Exiting application... Persisting model to file " + PersistFilePath);
-        App.persistModel(PersistFilePath);
-        close.accepted = true;
+        console.log("Exiting application... Persisting model to file " + PersistFilePath)
+        App.persistModel(PersistFilePath)
+        close.accepted = true
     }
 }
